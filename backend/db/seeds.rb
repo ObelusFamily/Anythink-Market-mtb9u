@@ -6,5 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.create!(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password', username: 'testUser')
-user.items.create(title: 'fork', description: 'A mighty fine fork')
+FAKE_PASSWORD = 'password'
+100.times do |_|
+    fake_user = Faker::Internet.unique.user
+    user = User.create!(:email => fake_user[:email], :password => FAKE_PASSWORD, 
+                        :password_confirmation => FAKE_PASSWORD, username: fake_user[:username].gsub(/[^a-zA-Z0-9]/, ""))
+    20.times do |_|
+        Item.create!(title: Faker::Commerce.product_name, description: Faker::Lorem.paragraph, user: user)
+    end
+end
