@@ -11,6 +11,9 @@ FAKE_PASSWORD = 'password'
     user = User.create!(:email => Faker::Internet.unique.email, :password => FAKE_PASSWORD, 
                         :password_confirmation => FAKE_PASSWORD, username: Faker::Internet.unique.username.gsub(/[^a-zA-Z0-9]/, ""))
     20.times do |_|
-        Item.create!(title: Faker::Commerce.product_name, description: Faker::Lorem.paragraph, user: user)
+        item = Item.create!(title: Faker::Commerce.product_name, description: Faker::Lorem.paragraph, user: user)
+        2.times do |_|
+            Comment.create!(body: Faker::Lorem.paragraph, user: user, item: item)
+        end
     end
 end
