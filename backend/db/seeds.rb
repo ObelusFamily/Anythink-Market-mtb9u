@@ -6,4 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Item(id: integer, title: string, slug: string, description: string, image: string, favorites_count: integer, user_id: integer, created_at: datetime, updated_at: datetime, tag_list: )
+User.first.items.create(title: 'fork', description: 'A mighty fine fork')
