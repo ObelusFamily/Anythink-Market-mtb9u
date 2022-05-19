@@ -29,8 +29,8 @@ const ItemPreview = (props) => {
     }
   };
 
-  const itemImage = (item) =>{
-    return item.image === undefined ? 'placeholder.png' : item.image
+  const itemImage = (item) => {
+    return item.image === undefined ? "placeholder.png" : item.image;
   };
 
   return (
