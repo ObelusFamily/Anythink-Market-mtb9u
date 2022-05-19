@@ -18,7 +18,6 @@ const mapDispatchToProps = (dispatch) => ({
   onLoad: (payload) => dispatch({ type: ITEM_PAGE_LOADED, payload }),
   onUnload: () => dispatch({ type: ITEM_PAGE_UNLOADED }),
 });
-
 class Item extends React.Component {
   componentWillMount() {
     this.props.onLoad(
