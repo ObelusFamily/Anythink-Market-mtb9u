@@ -30,7 +30,7 @@ const ItemPreview = (props) => {
   };
 
   const itemImage = (item) => {
-    return item.image === undefined ? "placeholder.png" : item.image;
+    return item.image === null ? "placeholder.png" : item.image;
   };
 
   return (
