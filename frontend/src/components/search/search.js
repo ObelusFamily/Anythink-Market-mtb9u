@@ -1,7 +1,7 @@
 import agent from "../../agent";
 import { connect } from "react-redux";
 import { SEARCH_CHANGED } from "../../constants/actionTypes";
-import { React, useState } from "react";
+import { React } from "react";
 
 const mapDispatchToProps = (dispatch) => ({
   onSearch: (inputText, payload) =>
@@ -9,13 +9,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Search = (props) => {
-  const [inputText, setInputText] = useState("");
   const inputHandler = (e) => {
     //convert input text to lower case
     const lowerCase = e.target.value.toLowerCase();
-    setInputText(lowerCase);
-    if (inputText.length > 2) {
-      props.onSearch(inputText, agent.Items.all(null, inputText));
+    if (lowerCase.length > 2) {
+      props.onSearch(lowerCase, agent.Items.all(null, lowerCase));
     }
   };
 
