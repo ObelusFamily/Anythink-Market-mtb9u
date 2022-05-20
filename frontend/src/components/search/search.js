@@ -4,7 +4,8 @@ import { SEARCH_CHANGED } from "../../constants/actionTypes";
 import { React, useState } from "react";
 
 const mapDispatchToProps = (dispatch) => ({
-  onSearch: (payload) => dispatch({ type: SEARCH_CHANGED, payload }),
+  onSearch: (inputText, payload) =>
+    dispatch({ type: SEARCH_CHANGED, inputText, payload }),
 });
 
 const Search = (props) => {
@@ -14,7 +15,7 @@ const Search = (props) => {
     const lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
     if (inputText.length > 2) {
-      props.onSearch(agent.Items.all(null, inputText));
+      props.onSearch(inputText, agent.Items.all(null, inputText));
     }
   };
 
