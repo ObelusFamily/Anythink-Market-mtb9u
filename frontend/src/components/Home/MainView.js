@@ -58,6 +58,14 @@ const TagFilterTab = (props) => {
   );
 };
 
+const EmptyBox = (props) => {
+  return (
+    <div id="empty">
+      <span>No items found for {props.text}</span>
+    </div>
+  );
+};
+
 const mapStateToProps = (state) => ({
   ...state.itemList,
   tags: state.home.tags,
@@ -70,31 +78,39 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MainView = (props) => {
-  return (
-    <div>
-      <div className="feed-toggle">
-        <ul className="nav nav-tabs">
-          <YourFeedTab
-            token={props.token}
-            tab={props.tab}
-            onTabClick={props.onTabClick}
-          />
+  if (
+    props.items !== undefined &&
+    props.items.length === 0 &&
+    props.searchText !== undefined
+  ) {
+    return <EmptyBox text={props.searchText} />;
+  } else {
+    return (
+      <div>
+        <div className="feed-toggle">
+          <ul className="nav nav-tabs">
+            <YourFeedTab
+              token={props.token}
+              tab={props.tab}
+              onTabClick={props.onTabClick}
+            />
 
-          <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
+            <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
 
-          <TagFilterTab tag={props.tag} />
-        </ul>
+            <TagFilterTab tag={props.tag} />
+          </ul>
+        </div>
+
+        <ItemList
+          pager={props.pager}
+          items={props.items}
+          loading={props.loading}
+          itemsCount={props.itemsCount}
+          currentPage={props.currentPage}
+        />
       </div>
-
-      <ItemList
-        pager={props.pager}
-        items={props.items}
-        loading={props.loading}
-        itemsCount={props.itemsCount}
-        currentPage={props.currentPage}
-      />
-    </div>
-  );
+    );
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainView);

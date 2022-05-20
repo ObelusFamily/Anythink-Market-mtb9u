@@ -75,6 +75,7 @@ const reducer = (state = {}, action) => {
         items: action.payload.items,
         itemsCount: action.payload.itemsCount,
         currentPage: 0,
+        searchText: action.inputText,
         tag: null,
       };
     case PROFILE_PAGE_LOADED:
