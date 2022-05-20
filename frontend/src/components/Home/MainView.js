@@ -78,7 +78,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MainView = (props) => {
-  if (props.items !== undefined && props.items.length === 0 && props.searchText !== undefined) {
+  if (
+    props.items !== undefined &&
+    props.items.length === 0 &&
+    props.searchText !== undefined
+  ) {
     return <EmptyBox text={props.searchText} />;
   } else {
     return (
