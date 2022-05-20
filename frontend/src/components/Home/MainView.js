@@ -60,7 +60,7 @@ const TagFilterTab = (props) => {
 
 const EmptyBox = (props) => {
   return (
-    <div>
+    <div id="empty">
       <span>No items found for {props.text}</span>
     </div>
   );
