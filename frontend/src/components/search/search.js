@@ -17,15 +17,19 @@ const Search = (props) => {
     }
   };
 
-  return (
-    <input
-      type="text"
-      id="search-box"
-      placeholder="What is it that you trully desire?"
-      onChange={inputHandler}
-      name="s"
-    />
-  );
+  if (props.visible) {
+    return (
+      <input
+        type="text"
+        id="search-box"
+        placeholder="What is it that you trully desire?"
+        onChange={inputHandler}
+        name="s"
+      />
+    );
+  } else {
+    return null;
+  }
 };
 
 export default connect(null, mapDispatchToProps)(Search);
